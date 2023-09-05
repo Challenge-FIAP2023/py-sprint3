@@ -1,4 +1,5 @@
 from time import sleep
+from random import randint
 
 # Função de linha simples para estética
 def linSimples(tam):
@@ -86,7 +87,47 @@ menu = resp = perg = 0 # Menu é o principal  | resposta: opção do menu inicia
 fechar = lig = 1 # Programa ligado (binário)
 menus = []
 
+lixeiras = {
+    'lixeira1': {
+        'ID': '101',
+        'Localização': 'Rua A, Número 123',
+        'Coleta': '',
+        'Enchimento': 0,
+        'Última coleta': '01-09-2023 10:30:00',
+        'Equipe responsável': 'Equipe A'
+    },
+    'lixeira2': {
+        'ID': '202',
+        'Localização': 'Rua B, Número 456',
+        'Coleta': '',
+        'Enchimento': 0,
+        'Última coleta': '29-08-2023 15:45:00',
+        'Equipe responsável': 'Equipe H'
+    },
+    'lixeira3': {
+        'ID': '303',
+        'Localização': 'Rua C, Número 789',
+        'Coleta': '',
+        'Enchimento': 0,
+        'Última coleta': '03-09-2023 09:15:00',
+        'Equipe responsável': 'Equipe A'
+    }
+}
+
 while lig == 1:
+
+    # Simulação dos sensores 
+    for k in lixeiras:
+        sensor_enchimento = randint(0, 100)
+        lixeiras[k].update({'Enchimento':sensor_enchimento})
+        if sensor_enchimento < 50:
+            lixeiras[k].update({'Coleta':'Concluída'})
+        elif sensor_enchimento >= 50 and sensor_enchimento < 75:
+            lixeiras[k].update({'Coleta':'Pendente'})
+        else:
+            lixeiras[k].update({'Coleta':'Em andamento'})
+
+
     # Loop programa principal
     while fechar == 1:
         menus.append(menu) # adicionar menu na lista para listar operação do usuário no fim do programa 
@@ -269,24 +310,15 @@ while lig == 1:
 
                 # input do usuário
                 escolha_lixeira = int(input('\nQual lixeira você deseja verificar? '))
-                subli('Qual lixeira você deseja verificar? ', lixeira)
+                subli('Qual lixeira você deseja verificar? ', escolha_lixeira)
                 print()
 
                 if 3 >= escolha_lixeira and escolha_lixeira >= 1:
                     menus.append(escolha_lixeira + 40) # adicionar menu na lista para listar operação do usuário no fim do programa
+                    for k, v in lixeiras[f'lixeira{escolha_lixeira}'].items():
+                        sleep(1)
+                        print(f'- {k}: {v}')
 
-                if escolha_lixeira == 1:
-                    print(f'lixeira {escolha_lixeira}')
-                    sleep(2)  
-                    voltandoMenu('Lixeiras') 
-                elif escolha_lixeira == 2:
-                    print(f'lixeira {escolha_lixeira}')
-                    sleep(2)  
-                    voltandoMenu('Lixeiras') 
-                elif escolha_lixeira == 3:
-                    print(f'lixeira {escolha_lixeira}')
-                    sleep(2)  
-                    voltandoMenu('Lixeiras') 
                 elif escolha_lixeira == 888: # Voltar ao menu principal
                     menus.append(888) # adicionar menu na lista para listar operação do usuário no fim do programa
                     voltandoMenu('Principal') 
