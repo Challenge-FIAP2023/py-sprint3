@@ -6,7 +6,7 @@ Integrantes do grupo:
 
 Descrição do programa e suas funcionalidades:
 
-O programa simula o aplicativo que será desenvolvido para celular. Nele, será possível verificar o quanto da lixeira está cheia, verificar se possui notificações a respeito da lixeira inteligente e tirar dúvidas sobre como utilizar, como funiona a lixeira inteligente e como funciona o sistema de coleta do lixo.
+O programa simula o aplicativo que será desenvolvido para celular. Nele, será possível verificar informações da(s) lixeira(s) do usuário a partir de dicionários (e valores simulados com a biblioteca random do Python de sensores da lixeira), verificar se possui notificações a respeito da lixeira inteligente e tirar dúvidas sobre como utilizar, como funiona a lixeira inteligente e como funciona o sistema de coleta do lixo.
 
 O programa contém um Menu Principal feito com a estrutura de repetição while com um print na tela com opções que o usuário pode escolher a a partir do input e atribuição de variável. A partir dessa variável, o programa analisa com operadores de comparação "if" e "elif" a resposta do usuário e redireciona para a seção escolhida.
 
@@ -16,7 +16,7 @@ Se caso escolher a opção "[2] Preciso de ajuda", o aplicativo o redirecionaria
 
 Se escolher a opção "[3] Enviar sugestões", o aplicativo o redirecionaria para a seção "Sugestões" onde o usuário poderia relatar alguma insatisfação, algum problema ou dar uma sugestão para o sistema da lixeira inteligente ou até mesmo para o aplicativo. Após o input do usuário, é feita uma verificação do input no programa principal para ver se é válido dentro das opções válidas (888, 999 ou qualquer texto).
 
-Se escolher a opçao "[4] Lixeiras"
+Se escolher a opçao "[4] Verificar Lixeiras", o aplicativo mostraria as lixeiras do usuário com uma opção para escolher qual ele deseja ver os detalhes. Após escolher, passa por um if verificando a escolha do usuário e caso esteja certa, mostra as informações do dicionário da lixeira escolhida com um laço for com a chave e valor do dicionário "lixeiras". Depois, o usuário volta para o menu de Lixeiras.
 
 Se o usuário escolher a opção "[999] Sair do aplicativo" em qualqueur input, ele será redirecionado para o Menu Operações Realizadas (dentro de um while) e terá as suas operações realizadas no aplicativo listadas em ordem que ocorreram. Ele terá a opção de '[1] Voltar' ou '[2] Sair'. Caso o input for diferente de 1 ou 2, será exibida uma mensagem de erro. Caso for igual, o usuário sai do loop, e de acordo com a resposta dele, o while principal que engloba tanto o programa principal quanto a confirmação de saída se encerrará (ligar = 0) e será printada uma mensagem avisando que o aplicativo está sendo fechado ou o usuário voltará para o while do programa principal (fechar = 1).
 
