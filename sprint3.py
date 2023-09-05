@@ -86,13 +86,14 @@ def continuar():
 menu = resp = perg = 0 # Menu é o principal  | resposta: opção do menu inicial | pergunta: tem certeza se deseja sair é 0
 fechar = lig = 1 # Programa ligado (binário)
 menus = []
+nomes_lixeiras = ['Lixeira A', 'Lixeira B', 'Lixeira C']
 
 lixeiras = {
     'lixeira1': {
         'ID': '101',
         'Localização': 'Rua A, Número 123',
         'Coleta': '',
-        'Enchimento': 0,
+        'Enchimento (%)': 0,
         'Última coleta': '01-09-2023 10:30:00',
         'Equipe responsável': 'Equipe A'
     },
@@ -100,7 +101,7 @@ lixeiras = {
         'ID': '202',
         'Localização': 'Rua B, Número 456',
         'Coleta': '',
-        'Enchimento': 0,
+        'Enchimento (%)': 0,
         'Última coleta': '29-08-2023 15:45:00',
         'Equipe responsável': 'Equipe H'
     },
@@ -108,7 +109,7 @@ lixeiras = {
         'ID': '303',
         'Localização': 'Rua C, Número 789',
         'Coleta': '',
-        'Enchimento': 0,
+        'Enchimento (%)': 0,
         'Última coleta': '03-09-2023 09:15:00',
         'Equipe responsável': 'Equipe A'
     }
@@ -119,7 +120,7 @@ while lig == 1:
     # Simulação dos sensores 
     for k in lixeiras:
         sensor_enchimento = randint(0, 100)
-        lixeiras[k].update({'Enchimento':sensor_enchimento})
+        lixeiras[k].update({'Enchimento (%)':sensor_enchimento})
         if sensor_enchimento < 50:
             lixeiras[k].update({'Coleta':'Concluída'})
         elif sensor_enchimento >= 50 and sensor_enchimento < 75:
@@ -294,15 +295,14 @@ while lig == 1:
                 # Formatação menu
                 print()
                 frase = len('[3] Lixeira Z')
-                tam_ajuda = ((tam_titulo - (frase)) // 2)
+                tam_lixeira = ((tam_titulo - (frase)) // 2)
                 linSimples(tam_titulo)
                 print(f'\n{"Lixeiras":^{tam_titulo}}')
                 print()
-                print(' ' * (tam_ajuda - 4), '-' * (frase + 6))
-                print(' ' * (tam_ajuda - 1), '[1] Lixeira X')
-                print(' ' * (tam_ajuda - 1), '[2] Lixeira Y')
-                print(' ' * (tam_ajuda - 1), '[3] Lixeira Z')
-                print(' ' * (tam_ajuda - 4), '-' * (frase + 6))
+                print(' ' * (tam_lixeira - 4), '-' * (frase + 6))
+                for l in range(0, len(nomes_lixeiras)):
+                    print(' ' * (tam_lixeira - 1), f'[{l+1}]', nomes_lixeiras[l])
+                print(' ' * (tam_lixeira - 4), '-' * (frase + 6))
                 print('\n')
                 linSimples(tam_titulo)
                 
@@ -315,9 +315,13 @@ while lig == 1:
 
                 if 3 >= escolha_lixeira and escolha_lixeira >= 1:
                     menus.append(escolha_lixeira + 40) # adicionar menu na lista para listar operação do usuário no fim do programa
+                    linDetalhe(20)
+                    print(f'\033[35m{nomes_lixeiras[escolha_lixeira-1]}\033[m:')
                     for k, v in lixeiras[f'lixeira{escolha_lixeira}'].items():
                         sleep(1)
-                        print(f'- {k}: {v}')
+                        print(f'- \033[33m{k}\033[m: {v}')
+                    linDetalhe(20)
+                    sleep(4)
 
                 elif escolha_lixeira == 888: # Voltar ao menu principal
                     menus.append(888) # adicionar menu na lista para listar operação do usuário no fim do programa
